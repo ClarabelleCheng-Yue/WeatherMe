@@ -22,8 +22,8 @@ class WeatherList extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>{ hi_temp.map((hi, i) => { return <td key={i}>{hi}</td>; }) }</tr>
-              <tr>{ lo_temp.map((lo, i) => { return <td key={i}>{lo}</td>; }) }</tr>
+              <tr>{ hi_temp.map((hi, i) => { return <td className="text-center" key={i}>{hi}</td>; }) }</tr>
+              <tr>{ lo_temp.map((lo, i) => { return <td className="text-center" key={i}>{lo}</td>; }) }</tr>
             </tbody>
           </table>
         </td>
@@ -33,17 +33,13 @@ class WeatherList extends Component {
 
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Location</th>
-            <th>10-day Forecast</th>
-          </tr>
-        </thead>
+      <div className="table-responsive">
+      <table className="table">
         <tbody>
           { this.props.weather.map(this.WeatherListItem) }
         </tbody>
       </table>
+      </div>
     )
   }
 }

@@ -30,16 +30,22 @@ class SearchBar extends Component {
 
   render() {
     return (
+      <div>
+      <h1>Weather Me!</h1>
+      <h3>Get your 10-day forecast here &#8628;</h3>
       <form
-        onSubmit={this.onFormSubmit.bind(this)}>
-        <input 
+        onSubmit={this.onFormSubmit.bind(this)}
+        className="input-group">
+        <input
+          className="form-control"
           placeholder="Enter a city"
           value={this.state.term}
           onChange={event => this.onInputChange(event.target.value)} />
-        <span>
-          <button type="submit">Weather me!</button>
+        <span id="btn_container" className="input-group-addon btn">
+          <button id="query_btn" type="submit">Weather Me!</button>
         </span>
       </form>
+      </div>
     );
   }
 }
