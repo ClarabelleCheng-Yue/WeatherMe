@@ -15,6 +15,8 @@ table {
   border-right: 800px solid transparent;
   border-bottom: 800px solid #214358; 
   position: fixed;
+  left: 0px;
+  top: 180px;
   z-index: -1;
 }
 
