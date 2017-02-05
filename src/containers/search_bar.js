@@ -8,13 +8,13 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     // initial search query is ''
-    this.state = {location: ''};
+    this.state = { location: '' };
   }
 
   // user changes the search query
   onInputChange(event) {
     // show change on screen
-    this.setState({location: event});
+    this.setState({ location: event });
   }
 
   // submit the search query
@@ -25,7 +25,7 @@ class SearchBar extends Component {
     // get the weather at the submitted location
     this.props.fetchWeather(this.state.location);
     // reset location state
-    this.setState({location: ''});
+    this.setState({ location: '' });
   }
 
   render() {

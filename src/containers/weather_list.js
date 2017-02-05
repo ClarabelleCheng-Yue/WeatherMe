@@ -9,21 +9,30 @@ class WeatherList extends Component {
     const hi_temp = channel.item.forecast.map( weather => { return parseInt(weather.high); } );
     const lo_temp = channel.item.forecast.map( weather => { return parseInt(weather.low) } );
     const descriptions = channel.item.forecast.map( weather => { return weather.text });
-    const date = channel.item.forecast.map( weather => { return weather.date } );
+    const dates = channel.item.forecast.map( weather => { return weather.date } );
 
     return (
-      <tr key={ city + region }>
-        <td>{ city }, { region }, { country }</td>
+      <tr key={ city }>
+        <td>
+          <table>
+            <tbody>
+              <tr><td>Date</td></tr>
+              <tr><td>Highs</td></tr>
+              <tr><td>Lows</td></tr>
+            </tbody>
+          </table>
+        </td>
         <td>
           <table>
             <thead>
               <tr>
-                { descriptions.map((text, i) => { return <th key={i}>{text}</th>; }) }
+                { dates.map((date, i) => { return <th key={ i }>{ date }</th>; }) }
               </tr>
             </thead>
             <tbody>
-              <tr>{ hi_temp.map((hi, i) => { return <td className="text-center" key={i}>{hi}</td>; }) }</tr>
-              <tr>{ lo_temp.map((lo, i) => { return <td className="text-center" key={i}>{lo}</td>; }) }</tr>
+              <tr>{ descriptions.map((text, i) => { return <td className="text-center" key={ i }>{ text }</td>; }) }</tr>
+              <tr>{ hi_temp.map((hi, i) => { return <td className="text-center" key={ i }>{ hi }</td>; }) }</tr>
+              <tr>{ lo_temp.map((lo, i) => { return <td className="text-center" key={ i }>{ lo }</td>; }) }</tr>
             </tbody>
           </table>
         </td>
@@ -31,10 +40,23 @@ class WeatherList extends Component {
     );
   }
 
+  setLocation(data) {
+    console.log('set loc: ', data);
+    if (data.length > 0) {
+      const channel = data[0].query.results.channel;
+      const { city, country, region } = channel.location;
+
+      return city + ', ' + region + ', ' + country;
+    } 
+  }
+
   render() {
     return (
       <div className="table-responsive">
       <table className="table">
+        <thead>
+          <tr><th><h3>{ this.setLocation(this.props.weather) }</h3></th></tr>
+        </thead>
         <tbody>
           { this.props.weather.map(this.WeatherListItem) }
         </tbody>
