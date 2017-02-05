@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 class WeatherList extends Component {
 
   WeatherListItem(data) {
+    if (!data) {
+      return;
+    }
+
     const channel = data.query.results.channel;
     const { city, country, region } = channel.location;
     const hi_temp = channel.item.forecast.map( weather => { return parseInt(weather.high); } );
