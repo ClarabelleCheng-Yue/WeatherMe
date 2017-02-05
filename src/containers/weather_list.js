@@ -12,31 +12,31 @@ class WeatherList extends Component {
     const dates = channel.item.forecast.map( weather => { return weather.date } );
 
     return (
-      <tr key={ city }>
-        <td>
-          <table>
-            <tbody>
-              <tr><td>Date</td></tr>
-              <tr><td>Highs</td></tr>
-              <tr><td>Lows</td></tr>
-            </tbody>
-          </table>
-        </td>
-        <td>
-          <table>
-            <thead>
-              <tr>
-                { dates.map((date, i) => { return <th key={ i }>{ date }</th>; }) }
-              </tr>
-            </thead>
-            <tbody>
-              <tr>{ descriptions.map((text, i) => { return <td className="text-center" key={ i }>{ text }</td>; }) }</tr>
-              <tr>{ hi_temp.map((hi, i) => { return <td className="text-center" key={ i }>{ hi }</td>; }) }</tr>
-              <tr>{ lo_temp.map((lo, i) => { return <td className="text-center" key={ i }>{ lo }</td>; }) }</tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+      <tr key={ city }><td>
+      <table className="table">
+        <thead>
+          <tr><th>{ city }, { region }, { country }</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th></th>{ dates.map((date, i) => { return <th className="text-center" key={ i }>{ date }</th>; }) }
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td></td>{ descriptions.map((text, i) => { return <td className="text-center" key={ i }>{ text }</td>; }) }</tr>
+                  <tr><td><b>Highs</b></td>{ hi_temp.map((hi, i) => { return <td className="text-center" key={ i }>{ hi }</td>; }) }</tr>
+                  <tr><td><b>Lows</b></td>{ lo_temp.map((lo, i) => { return <td className="text-center" key={ i }>{ lo }</td>; }) }</tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td></tr>
     );
   }
 
@@ -52,11 +52,8 @@ class WeatherList extends Component {
 
   render() {
     return (
-      <div className="table-responsive">
-      <table className="table">
-        <thead>
-          <tr><th><h3>{ this.setLocation(this.props.weather) }</h3></th></tr>
-        </thead>
+      <div>
+      <table>
         <tbody>
           { this.props.weather.map(this.WeatherListItem) }
         </tbody>
@@ -69,5 +66,13 @@ class WeatherList extends Component {
 function mapStateToProps({ weather }) {
   return { weather };
 }
+
+/*
+this.setLocation(this.props.weather)
+
+<thead className="table_header">
+          <tr><th><h3>{ this.setLocation(this.props.weather) }</h3></th></tr>
+        </thead>
+*/
 
 export default connect(mapStateToProps)(WeatherList);
