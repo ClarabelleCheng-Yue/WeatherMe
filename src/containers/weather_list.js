@@ -12,8 +12,7 @@ class WeatherList extends Component {
     const dates = channel.item.forecast.map( weather => { return weather.date } );
 
     return (
-      <tr key={ city }><td>
-      <table className="table">
+      <table key={city} className="table">
         <thead>
           <tr><th>{ city }, { region }, { country }</th></tr>
         </thead>
@@ -36,28 +35,13 @@ class WeatherList extends Component {
           </tr>
         </tbody>
       </table>
-      </td></tr>
     );
-  }
-
-  setLocation(data) {
-    console.log('set loc: ', data);
-    if (data.length > 0) {
-      const channel = data[0].query.results.channel;
-      const { city, country, region } = channel.location;
-
-      return city + ', ' + region + ', ' + country;
-    } 
   }
 
   render() {
     return (
       <div>
-      <table>
-        <tbody>
-          { this.props.weather.map(this.WeatherListItem) }
-        </tbody>
-      </table>
+        { this.props.weather.map(this.WeatherListItem) }
       </div>
     )
   }
@@ -66,13 +50,5 @@ class WeatherList extends Component {
 function mapStateToProps({ weather }) {
   return { weather };
 }
-
-/*
-this.setLocation(this.props.weather)
-
-<thead className="table_header">
-          <tr><th><h3>{ this.setLocation(this.props.weather) }</h3></th></tr>
-        </thead>
-*/
 
 export default connect(mapStateToProps)(WeatherList);
