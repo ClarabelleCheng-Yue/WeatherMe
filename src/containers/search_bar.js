@@ -40,7 +40,7 @@ class SearchBar extends Component {
         <input
           className="form-control"
           placeholder="Enter a city"
-          value={ this.state.term }
+          value={ this.state.location }
           onChange={ event => this.onInputChange(event.target.value) } />
         <span id="btn_container" className="input-group-addon btn">
           <button id="query_btn" type="submit">Weather Me!</button>
