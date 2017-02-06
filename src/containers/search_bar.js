@@ -33,7 +33,6 @@ class SearchBar extends Component {
     return (
       <div>
       <h1>Weather Me!</h1>
-      <ClearButton />
       <h3>Get your 10-day forecast here &#8628;</h3>
       <form
         onSubmit={ this.onFormSubmit.bind(this) }
@@ -47,6 +46,8 @@ class SearchBar extends Component {
           <button id="query_btn" type="submit">Weather Me!</button>
         </span>
       </form>
+      <br />
+      <ClearButton weather={ this.props.weather } />
       </div>
     );
   }
@@ -57,5 +58,9 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchWeather }, dispatch);
 }
 
+function mapStateToProps({ weather }) {
+  return { weather };
+}
+
 // connect SearchBar container to redux store
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

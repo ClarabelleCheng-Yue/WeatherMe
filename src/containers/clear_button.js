@@ -9,13 +9,18 @@ class ClearButton extends Component {
   }
 
   render() {
-    return (
-      <button 
-        className="btn-primary" 
-        onClick={ () => { this.props.clearWeather(); } }>
-        Clear All
-      </button>
-    );
+    if (this.props.weather.length > 0) {
+      return (
+        <button 
+          className="btn" 
+          id="clear_btn"
+          onClick={ () => { this.props.clearWeather(); } }>
+          Clear All
+        </button>
+      );
+    }
+    
+    return <div></div>
   }
 }
 
