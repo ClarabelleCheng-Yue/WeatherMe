@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWeather } from '../actions/index';
+import ClearButton from './clear_button';
 
 // user searches for a location of which to get the weather
 class SearchBar extends Component {
@@ -32,15 +33,16 @@ class SearchBar extends Component {
     return (
       <div>
       <h1>Weather Me!</h1>
+      <ClearButton />
       <h3>Get your 10-day forecast here &#8628;</h3>
       <form
-        onSubmit={this.onFormSubmit.bind(this)}
+        onSubmit={ this.onFormSubmit.bind(this) }
         className="input-group">
         <input
           className="form-control"
           placeholder="Enter a city"
-          value={this.state.term}
-          onChange={event => this.onInputChange(event.target.value)} />
+          value={ this.state.term }
+          onChange={ event => this.onInputChange(event.target.value) } />
         <span id="btn_container" className="input-group-addon btn">
           <button id="query_btn" type="submit">Weather Me!</button>
         </span>
@@ -51,9 +53,9 @@ class SearchBar extends Component {
 }
 
 // hook up action creator fetchWeather to SearchBar container
-function mapDispathToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchWeather }, dispatch);
 }
 
 // connect SearchBar container to redux store
-export default connect(null, mapDispathToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(SearchBar);

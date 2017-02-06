@@ -31,8 +31,8 @@ class WeatherList extends Component {
                 </thead>
                 <tbody>
                   <tr><td></td>{ descriptions.map((text, i) => { return <td className="text-center" key={ i }>{ text }</td>; }) }</tr>
-                  <tr><td><b>Highs</b></td>{ hi_temp.map((hi, i) => { return <td className="text-center" key={ i }>{ hi }</td>; }) }</tr>
-                  <tr><td><b>Lows</b></td>{ lo_temp.map((lo, i) => { return <td className="text-center" key={ i }>{ lo }</td>; }) }</tr>
+                  <tr><td><b>Highs (&#176;F)</b></td>{ hi_temp.map((hi, i) => { return <td className="text-center" key={ i }>{ hi }</td>; }) }</tr>
+                  <tr><td><b>Lows (&#176;F)</b></td>{ lo_temp.map((lo, i) => { return <td className="text-center" key={ i }>{ lo }</td>; }) }</tr>
                 </tbody>
               </table>
             </td>
